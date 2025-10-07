@@ -1,0 +1,30 @@
+/* Custom CSS for gold theme */
+.gold-bg {
+  background-color: #D4AF37; /* Gold color */
+}
+
+.gold-text {
+  color: #D4AF37; /* Gold color */
+}
+
+.gold-border {
+  border-color: #D4AF37; /* Gold color */
+}
+
+.gold-hover:hover {
+  background-color: #C9A32A; /* Slightly darker gold for hover effect */
+}
+
+.gold-button {
+  background-color: #D4AF37; /* Gold color */
+  color: #000000; /* Black text for contrast */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.gold-button:hover {
+  background-color: #C9A32A; /* Slightly darker gold for hover effect */
+}
