@@ -90,7 +90,7 @@ const Projects = () => {
     <div className="pt-16 bg-white transition-colors duration-300">
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Projects</h1>
+          <h1 className="text-4xl font-bold text-yellow-500 mb-4">Our Projects</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             A showcase of our successful partnerships and completed projects across the GCC region
           </p>
