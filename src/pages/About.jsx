@@ -83,7 +83,14 @@ const About = () => {
                     index % 2 === 0 ? 'md:flex-row-reverse' : ''
                   }`}
                 >
-                  <div className="md:w-1/2 mb-4 md:mb-0 md:px-8">
+                   <div className="md:w-1/2 flex justify-center md:justify-start md:pl-48">
+                    <div className="relative">
+                      <div className="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center text-gray-900 font-bold text-xl z-10">
+                        {event.year}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:w-1/2 mb-4 md:mb-0 md:px-8  order-2 md:order-1">
                     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{event.event}</h3>
                       <p className="text-gray-600">
@@ -96,13 +103,7 @@ const About = () => {
                     </div>
                   </div>
                   
-                  <div className="md:w-1/2 flex justify-center md:justify-start md:pl-48">
-                    <div className="relative">
-                      <div className="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center text-gray-900 font-bold text-xl z-10">
-                        {event.year}
-                      </div>
-                    </div>
-                  </div>
+                 
                 </div>
               ))}
             </div>

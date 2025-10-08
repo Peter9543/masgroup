@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '../ui/button';
 import logo from '@/assets/logos/logo.png'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -13,6 +14,24 @@ const Header = () => {
   const toggleServices = () => {
     setIsServicesOpen(!isServicesOpen);
   };
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+        setIsServicesOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="bg-white shadow-md fixed w-full top-0 z-50 transition-colors duration-300 border-b-2 border-yellow-500">
@@ -83,7 +102,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden pb-4">
+          <div ref={mobileMenuRef} className="md:hidden pb-4">
             <div className="flex flex-col space-y-3">
               <a href="/" className="text-gray-800 hover:text-yellow-600 font-medium">Home</a>
               <a href="/about" className="text-gray-800 hover:text-yellow-600 font-medium">About Us</a>

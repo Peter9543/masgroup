@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-gray-900 pt-8 pb-4 transition-colors duration-300 border-t-2 border-yellow-500">
+    <footer className="bg-gray-200 text-gray-900 pt-3 transition-colors duration-300 border-t-2 border-yellow-500">
       <div className="w-full px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-4  gap-6 ">
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-3 text-yellow-600">Quick Links</h3>
@@ -49,14 +49,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 pt-4 mt-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-3 md:mb-0">
+        <div className="border-t border-gray-200 pt-4 ">
+          <div className="flex flex-col md:flex-row justify-between items-center ">
+            <div className="mb-3 ">
               <p className="text-gray-700 text-center md:text-left text-sm">
                 A one-stop destination for both blue and white-collar services
               </p>
             </div>
-            <div className="text-gray-500 text-xs">
+            <div className="text-gray-500 text-xs mb-3">
               <p>&copy; 2025 MAS Group of Companies. All Rights Reserved.</p>
             </div>
           </div>

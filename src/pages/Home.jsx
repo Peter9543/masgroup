@@ -29,25 +29,25 @@ import L from 'leaflet';
 // Fix for default marker icons in Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
 const Home = () => {
     // Sample client logos for the carousel
     const clientLogos = [
-        { id: 1, name:Client1  },
-        { id: 2, name:Client2  },
-        { id: 3, name:Client3  },
-        { id: 4, name:Client4  },
-        { id: 5, name:Client5  },
-        { id: 6, name:Client6  },
-        { id: 7, name:Client7  },
-        { id: 8, name:Client8  },
-        { id: 9, name:Client9  },
-        { id: 10, name:Client10  },
-        { id: 11, name:Client11  },
+        { id: 1, name: Client1 },
+        { id: 2, name: Client2 },
+        { id: 3, name: Client3 },
+        { id: 4, name: Client4 },
+        { id: 5, name: Client5 },
+        { id: 6, name: Client6 },
+        { id: 7, name: Client7 },
+        { id: 8, name: Client8 },
+        { id: 9, name: Client9 },
+        { id: 10, name: Client10 },
+        { id: 11, name: Client11 },
     ];
 
     // Core services data
@@ -162,23 +162,25 @@ const Home = () => {
                     <p className="text-xl mb-8 max-w-3xl mx-auto">
                         Delivering excellence in Manpower, Contracting, and Corporate Services with over 16 years of experience
                     </p>
-                   <a href='/services'>
-                      <Button variant="gold" className="font-bold py-3 px-8 text-lg">
-                        Explore Our Services
-                    </Button>
-                   </a>
+                    <a href='/services'>
+                        <Button variant="gold" className="font-bold py-3 px-8 text-lg">
+                            Explore Our Services
+                        </Button>
+                    </a>
                 </div>
             </section>
 
             {/* Core Services */}
-            <section className="py-16 bg-gray-50 transition-colors duration-300 p-10">
-                <div className="mx-auto px-4">
+            <section className="py-16 bg-gray-50 transition-colors duration-300 p-5 ">
+                <div className=" ">
                     <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Our Core Services</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-10">
                         {coreServices.map((service) => (
                             <div
                                 key={service.id}
-                                className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group"
+                                className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg 
+             transition transform duration-300 ease-in-out 
+             hover:-translate-y-5 hover:scale-105 group "
                             >
                                 {/* Background Image */}
                                 <img
@@ -188,7 +190,7 @@ const Home = () => {
                                 />
 
                                 {/* Dark overlay for readability */}
-                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
+                                <div className="absolute inset-0 bg-black/30  group-hover:bg-black/50   "></div>
 
                                 {/* Content above image */}
                                 <div className="relative z-10 p-6 text-white">
@@ -212,7 +214,7 @@ const Home = () => {
             <section className="py-16 bg-white transition-colors duration-300" ref={statsRef}>
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Why Choose MAS Group?</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                         {statistics.map((stat) => (
                             <div key={stat.id} className="text-center">
                                 <div className="text-4xl font-bold text-yellow-600 mb-2">
@@ -241,7 +243,7 @@ const Home = () => {
                                 className="flex items-center justify-center bg-white p-6 rounded-lg shadow-sm w-30 h-35 mx-6 border border-gray-200"
                             >
                                 <span className="font-medium text-gray-700">
-                                   <img src={logo.name} alt="" className='w-full h-full' />
+                                    <img src={logo.name} alt="" className='w-full h-full' />
                                 </span>
                             </div>
                         ))}
@@ -257,9 +259,9 @@ const Home = () => {
                         <div>
                             <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Global Presence</h2>
                             <div className="w-full h-96 rounded-xl overflow-hidden shadow-lg">
-                                <MapContainer 
-                                    center={[25.276987, 55.296249]} 
-                                    zoom={3} 
+                                <MapContainer
+                                    center={[25.276987, 55.296249]}
+                                    zoom={3}
                                     style={{ height: '100%', width: '100%' }}
                                     className="z-0"
                                 >

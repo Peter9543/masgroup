@@ -3,7 +3,7 @@ import { Button } from '../../components/ui/button';
 
 const ServiceCard = ({ service }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 h-full flex flex-col">
+    <div className="bg-white hover:bg-gray-200 transform hover:scale-105 duration-300 ease-in-out rounded-lg shadow-lg overflow-hidden border border-gray-200 h-full flex flex-col">
       <div className="p-6 flex-grow">
         <h2 className="text-xl font-bold rounded text-center  bg-yellow-500 mb-3">{service.title}</h2>
         <p className="text-gray-700 mb-5">{service.description}</p>

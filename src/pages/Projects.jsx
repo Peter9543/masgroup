@@ -10,8 +10,12 @@ import Client8 from '@/assets/logos/Client-8.png'
 import Client9 from '@/assets/logos/Client-9.png'
 import Client10 from '@/assets/logos/Client-10.png'
 import Client11 from '@/assets/logos/Client-11.png'
+import { Button } from "@/components/ui/button";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Filter } from 'lucide-react';
 
 import Marquee from "react-fast-marquee";
+
 const Projects = () => {
   const [filter, setFilter] = useState('all');
   const [locationFilter, setLocationFilter] = useState('all');
@@ -86,6 +90,57 @@ const Projects = () => {
   const services = [...new Set(projects.map(project => project.service))];
   const locations = [...new Set(projects.map(project => project.location))];
 
+  // Filter component for mobile drawer
+  const MobileFilters = () => (
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-medium mb-3">Filter by Service</h3>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            onClick={() => setFilter('all')}
+            variant={filter === 'all' ? 'gold' : 'outline'}
+            size="sm"
+          >
+            All Services
+          </Button>
+          {services.map(service => (
+            <Button
+              key={service}
+              onClick={() => setFilter(service)}
+              variant={filter === service ? 'gold' : 'outline'}
+              size="sm"
+            >
+              {service}
+            </Button>
+          ))}
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-medium mb-3">Filter by Location</h3>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            onClick={() => setLocationFilter('all')}
+            variant={locationFilter === 'all' ? 'gold' : 'outline'}
+            size="sm"
+          >
+            All Locations
+          </Button>
+          {locations.map(location => (
+            <Button
+              key={location}
+              onClick={() => setLocationFilter(location)}
+              variant={locationFilter === location ? 'gold' : 'outline'}
+              size="sm"
+            >
+              {location}
+            </Button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="pt-16 bg-white transition-colors duration-300">
       <div className="container mx-auto px-4 py-12">
@@ -96,8 +151,36 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="mb-12 bg-gray-50 p-6 rounded-lg border border-gray-200">
+        {/* Mobile Filter Button */}
+        <div className="md:hidden mb-6">
+          <Drawer direction="left">
+            <DrawerTrigger asChild>
+              <Button variant="outline" className="w-full">
+                <Filter className="mr-2 h-4 w-4" />
+                Filter Projects
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent direction="left" className="w-4/5 sm:w-2/3 max-w-sm">
+              <DrawerHeader>
+                <DrawerTitle>Filter Projects</DrawerTitle>
+                <DrawerDescription>
+                  Filter projects by service or location
+                </DrawerDescription>
+              </DrawerHeader>
+              <div className="px-4 pb-4">
+                <MobileFilters />
+              </div>
+              <DrawerFooter>
+                <DrawerClose asChild>
+                  <Button variant="gold">Apply Filters</Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        </div>
+
+        {/* Desktop Filters */}
+        <div className="hidden md:block mb-8 ml-10 mr-10 bg-gray-50 p-5 rounded-lg border border-gray-200">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-gray-700 font-medium mb-2">Filter by Service</label>
@@ -181,7 +264,7 @@ const Projects = () => {
         </div>
 
         {/* Our Clients */}
-       <section className="py-16  transition-colors duration-300 container mx-auto">
+       <section className="  transition-colors duration-300 container mx-auto">
                 <div className="px-4">
                     <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
                         Our Clients
