@@ -65,19 +65,19 @@ const Projects = () => {
       image: "project6.jpg"
     }
   ];
-    const clientLogos = [
-          { id: 1, name:Client1  },
-          { id: 2, name:Client2  },
-          { id: 3, name:Client3  },
-          { id: 4, name:Client4  },
-          { id: 5, name:Client5  },
-          { id: 6, name:Client6  },
-          { id: 7, name:Client7  },
-          { id: 8, name:Client8  },
-          { id: 9, name:Client9  },
-          { id: 10, name:Client10  },
-          { id: 11, name:Client11  },
-      ];
+  const clientLogos = [
+    { id: 1, name: Client1 },
+    { id: 2, name: Client2 },
+    { id: 3, name: Client3 },
+    { id: 4, name: Client4 },
+    { id: 5, name: Client5 },
+    { id: 6, name: Client6 },
+    { id: 7, name: Client7 },
+    { id: 8, name: Client8 },
+    { id: 9, name: Client9 },
+    { id: 10, name: Client10 },
+    { id: 11, name: Client11 },
+  ];
 
   // Filter projects based on selected filters
   const filteredProjects = projects.filter(project => {
@@ -115,7 +115,7 @@ const Projects = () => {
           ))}
         </div>
       </div>
-      
+
       <div>
         <h3 className="text-lg font-medium mb-3">Filter by Location</h3>
         <div className="flex flex-wrap gap-2">
@@ -160,17 +160,29 @@ const Projects = () => {
                 Filter Projects
               </Button>
             </DrawerTrigger>
-            <DrawerContent direction="left" className="w-4/5 sm:w-2/3 max-w-sm">
-              <DrawerHeader>
-                <DrawerTitle>Filter Projects</DrawerTitle>
-                <DrawerDescription>
-                  Filter projects by service or location
-                </DrawerDescription>
+            <DrawerContent direction="left" className="w-4/5 sm:w-2/3 max-w-sm ">
+              <DrawerHeader className=" ">
+                <div className='flex items-center justify-between'>
+                  <DrawerTitle>Filter Projects</DrawerTitle>
+                  <DrawerClose asChild>
+                    <Button variant="ghost" size="icon" className="mr-0  ml-18 mb-5">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                        <path d="M18 6L6 18" />
+                        <path d="M6 6l12 12" />
+                      </svg>
+                    </Button>
+                  </DrawerClose>
+                 
+                </div>
+                 <DrawerDescription>
+                    Filter projects by service or location
+                  </DrawerDescription>
+
               </DrawerHeader>
-              <div className="px-4 pb-4">
+              <div className="px-4 pb-4 bg-white">
                 <MobileFilters />
               </div>
-              <DrawerFooter>
+              <DrawerFooter className="">
                 <DrawerClose asChild>
                   <Button variant="gold">Apply Filters</Button>
                 </DrawerClose>
@@ -187,11 +199,10 @@ const Projects = () => {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setFilter('all')}
-                  className={`px-4 py-2 rounded-full ${
-                    filter === 'all' 
-                      ? 'bg-yellow-500 text-gray-900' 
+                  className={`px-4 py-2 rounded-full ${filter === 'all'
+                      ? 'bg-yellow-500 text-gray-900'
                       : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   All Services
                 </button>
@@ -199,28 +210,26 @@ const Projects = () => {
                   <button
                     key={service}
                     onClick={() => setFilter(service)}
-                    className={`px-4 py-2 rounded-full ${
-                      filter === service 
-                        ? 'bg-yellow-500 text-gray-900' 
+                    className={`px-4 py-2 rounded-full ${filter === service
+                        ? 'bg-yellow-500 text-gray-900'
                         : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
-                    }`}
+                      }`}
                   >
                     {service}
                   </button>
                 ))}
               </div>
             </div>
-            
+
             <div>
               <label className="block text-gray-700 font-medium mb-2">Filter by Location</label>
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setLocationFilter('all')}
-                  className={`px-4 py-2 rounded-full ${
-                    locationFilter === 'all' 
-                      ? 'bg-yellow-500 text-gray-900' 
+                  className={`px-4 py-2 rounded-full ${locationFilter === 'all'
+                      ? 'bg-yellow-500 text-gray-900'
                       : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   All Locations
                 </button>
@@ -228,11 +237,10 @@ const Projects = () => {
                   <button
                     key={location}
                     onClick={() => setLocationFilter(location)}
-                    className={`px-4 py-2 rounded-full ${
-                      locationFilter === location 
-                        ? 'bg-yellow-500 text-gray-900' 
+                    className={`px-4 py-2 rounded-full ${locationFilter === location
+                        ? 'bg-yellow-500 text-gray-900'
                         : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
-                    }`}
+                      }`}
                   >
                     {location}
                   </button>
@@ -257,35 +265,35 @@ const Projects = () => {
                   </span>
                 </div>
                 <p className="text-gray-600 mb-4">{project.location}</p>
-              
+
               </div>
             </div>
           ))}
         </div>
 
         {/* Our Clients */}
-       <section className="  transition-colors duration-300 container mx-auto">
-                <div className="px-4">
-                    <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-                        Our Clients
-                    </h2>
+        <section className="  transition-colors duration-300 container mx-auto">
+          <div className="px-4">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+              Our Clients
+            </h2>
 
-                    <Marquee
-                        speed={75} gradient={false} loop={0} autoFill={true}
-                    >
-                        {clientLogos.map((logo) => (
-                            <div
-                                key={logo.id}
-                                className="flex items-center justify-center bg-white p-6 rounded-lg shadow-sm w-30 h-35 mx-6 border border-gray-200"
-                            >
-                                <span className="font-medium text-gray-700">
-                                   <img src={logo.name} alt="" className='w-full h-full' />
-                                </span>
-                            </div>
-                        ))}
-                    </Marquee>
+            <Marquee
+              speed={75} gradient={false} loop={0} autoFill={true}
+            >
+              {clientLogos.map((logo) => (
+                <div
+                  key={logo.id}
+                  className="flex items-center justify-center bg-white p-6 rounded-lg shadow-sm w-30 h-35 mx-6 border border-gray-200"
+                >
+                  <span className="font-medium text-gray-700">
+                    <img src={logo.name} alt="" className='w-full h-full' />
+                  </span>
                 </div>
-            </section>
+              ))}
+            </Marquee>
+          </div>
+        </section>
       </div>
     </div>
   );
