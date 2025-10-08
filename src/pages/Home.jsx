@@ -190,7 +190,7 @@ const Home = () => {
                                 />
 
                                 {/* Dark overlay for readability */}
-                                <div className="absolute inset-0 bg-black/30  group-hover:bg-black/50   "></div>
+                                <div className="absolute inset-0 bg-gray-900/30  group-hover:bg-black/30   "></div>
 
                                 {/* Content above image */}
                                 <div className="relative z-10 p-6 text-white">
