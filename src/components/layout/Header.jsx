@@ -6,9 +6,17 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const mobileMenuRef = useRef(null);
+  const toggleButtonRef = useRef(null);
 
-  const toggleMenu = () => {
+  const toggleMenu = (e) => {
+    // Prevent event from bubbling to document for click-outside detection
+    e.stopPropagation();
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsServicesOpen(false);
   };
 
   const toggleServices = () => {
@@ -18,9 +26,14 @@ const Header = () => {
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Don't close if clicking on the toggle button itself
+      if (toggleButtonRef.current && toggleButtonRef.current.contains(event.target)) {
+        return;
+      }
+      
+      // Close if clicking outside the menu
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
-        setIsServicesOpen(false);
+        closeMenu();
       }
     };
 
@@ -87,54 +100,58 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-gray-800 hover:text-yellow-600 focus:outline-none"
+              className="text-gray-800 hover:text-yellow-600 focus:outline-none p-2"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              ref={toggleButtonRef}
             >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                {isMenuOpen ? (
+              {isMenuOpen ? (
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                ) : (
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                )}
-              </svg>
+                </svg>
+              )}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div ref={mobileMenuRef} className="md:hidden pb-4">
-            <div className="flex flex-col space-y-3">
-              <a href="/" className="text-gray-800 hover:text-yellow-600 font-medium">Home</a>
-              <a href="/about" className="text-gray-800 hover:text-yellow-600 font-medium">About Us</a>
+          <div ref={mobileMenuRef} className="md:hidden pb-4 absolute top-full left-0 right-0 bg-white shadow-lg z-50">
+            <div className="flex flex-col space-y-3 pt-2">
+              <a href="/" className="text-gray-800 hover:text-yellow-600 font-medium px-4 py-2">Home</a>
+              <a href="/about" className="text-gray-800 hover:text-yellow-600 font-medium px-4 py-2">About Us</a>
 
               {/* Mobile Services Dropdown */}
-              <div>
+              <div className="px-4">
                 <button
                   onClick={toggleServices}
-                  className="text-gray-800 hover:text-yellow-600 font-medium flex items-center w-full justify-between"
+                  className="text-gray-800 hover:text-yellow-600 font-medium flex items-center w-full justify-between py-2"
+                  aria-expanded={isServicesOpen}
                 >
                   Our Services
-                  <svg className={`w-4 h-4 transform ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg className={`w-4 h-4 transform transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </button>
 
                 {isServicesOpen && (
-                  <div className="pl-4 mt-2 space-y-2">
-                    <a href="/services/manpower" className="block text-gray-800 hover:text-yellow-600">Manpower Support</a>
-                    <a href="/services/contracting" className="block text-gray-800 hover:text-yellow-600">Contracting & Engineering</a>
-                    <a href="/services/trading" className="block text-gray-800 hover:text-yellow-600">Trading & Supply</a>
-                    <a href="/services/transportation" className="block text-gray-800 hover:text-yellow-600">Transportation & Limousine</a>
-                    <a href="/services/corporate" className="block text-gray-800 hover:text-yellow-600">Corporate & Real Estate</a>
-                    <a href="/services/facility" className="block text-gray-800 hover:text-yellow-600">Facility Management</a>
+                  <div className="pl-4 space-y-2">
+                    <a href="/services/manpower" className="block text-gray-800 hover:text-yellow-600 py-2">Manpower Support</a>
+                    <a href="/services/contracting" className="block text-gray-800 hover:text-yellow-600 py-2">Contracting & Engineering</a>
+                    <a href="/services/trading" className="block text-gray-800 hover:text-yellow-600 py-2">Trading & Supply</a>
+                    <a href="/services/transportation" className="block text-gray-800 hover:text-yellow-600 py-2">Transportation & Limousine</a>
+                    <a href="/services/corporate" className="block text-gray-800 hover:text-yellow-600 py-2">Corporate & Real Estate</a>
+                    <a href="/services/facility" className="block text-gray-800 hover:text-yellow-600 py-2">Facility Management</a>
                   </div>
                 )}
               </div>
 
-              <a href="/projects" className="text-gray-800 hover:text-yellow-600 font-medium">Our Projects</a>
-              <a href="/safety" className="text-gray-800 hover:text-yellow-600 font-medium">Safety</a>
-              <a href="/contact" className="text-gray-800 hover:text-yellow-600 font-medium">Contact Us</a>
-
+              <a href="/projects" className="text-gray-800 hover:text-yellow-600 font-medium px-4 py-2">Our Projects</a>
+              <a href="/safety" className="text-gray-800 hover:text-yellow-600 font-medium px-4 py-2">Safety</a>
+              <a href="/contact" className="text-gray-800 hover:text-yellow-600 font-medium px-4 py-2">Contact Us</a>
             </div>
           </div>
         )}
