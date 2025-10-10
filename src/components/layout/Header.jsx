@@ -37,12 +37,21 @@ const Header = () => {
       }
     };
 
+    const handleScroll = () => {
+      // Close mobile menu when scrolling
+      if (isMenuOpen) {
+        closeMenu();
+      }
+    };
+
     if (isMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('scroll', handleScroll);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, [isMenuOpen]);
 

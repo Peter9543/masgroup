@@ -49,9 +49,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-200  ">
-          <div className="flex flex-col md:flex-row justify-between items-center ">
-            <div className="mb-3 ">
+        <div className="border-t border-gray-200 f  ">
+          <div className="flex flex-col md:flex-row justify-center items-center ">
+            <div className="mb-3  mr-8">
               <p className="text-gray-700 text-center md:text-left text-sm">
                 A one-stop destination for both blue and white-collar services
               </p>
